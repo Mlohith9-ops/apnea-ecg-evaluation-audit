@@ -1,0 +1,19 @@
+# Raw dataset and derived feature tables (download/rebuild them; see data/README.md)
+data/apnea_ecg/
+data/processed/
+
+# Backups made while fixing the subject map
+*.backup_*.csv
+
+# Python
+__pycache__/
+*.pyc
+
+# Editor and assistant settings
+.vscode/
+CLAUDE.md
+
+# Results files over 5 MB. Git cannot filter by size, so list them here by path.
+# At packaging time (2026-10-29) no results file exceeded 5 MB (largest: 3.2 MB).
+# Check before committing new runs:
+#   Get-ChildItem results -Recurse -File | Where-Object Length -gt 5MB

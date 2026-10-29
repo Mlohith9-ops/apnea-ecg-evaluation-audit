@@ -1,0 +1,4 @@
+pair,offset_s,overlap_min,outside_overlap_min_rec1,outside_overlap_min_rec2,identical_samples_frac,corr_full,max_abs_diff_mV,label_seconds_compared,label_disagree_frac,label_disagree_min_approx,apnea_min_rec1_overlap,apnea_min_rec2_overlap,qrs_matched_within_2_samples
+c05-c06,80.0,465.5,0.0,1.8,1.0,1.0,0.0,27930,0.0057,2.7,3.0,1.0,1.0
+x33-x34,70.0,472.3,0.0,1.8,1.0,1.0,0.0,28340,0.0078,3.7,3.0,4.0,1.0
+x22-x35,40.0,481.2,0.0,1.0,1.0,1.0,0.0,28870,0.0042,2.0,2.0,0.0,1.0

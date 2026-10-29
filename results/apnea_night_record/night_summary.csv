@@ -1,0 +1,2 @@
+model,night_auc_A_vs_C,night_acc_A_vs_C,spearman_all,mae_min_per_h
+logreg,"0.780 [0.581, 0.929]","0.700 [0.533, 0.867]","0.574 [0.297, 0.759]","15.037 [12.779, 17.478]"

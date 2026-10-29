@@ -1,0 +1,7 @@
+features,model,spearman_rho,mae_apnea_min_per_h,night_level_acc_at_5_per_h
+raw,hist_gb,0.236,15.1,0.571
+raw,logreg,0.402,15.1,0.629
+raw,random_forest,0.115,15.6,0.543
+norm,hist_gb,0.471,14.7,0.743
+norm,logreg,-0.31,19.1,0.657
+norm,random_forest,0.625,14.6,0.657

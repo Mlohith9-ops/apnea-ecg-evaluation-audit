@@ -1,0 +1,3 @@
+set,prob_column,rows,records,subject_groups,label_values,apnea_minutes,invalid_label,invalid_prob,missing_id,full_row_duplicates,rows_used
+learning LOSO,hist_gb|leave-one-subject-out,16558,34,23,"0,1",6508,0,0,0,5,16558
+official x,prob,16292,33,23,"0,1",6543,0,0,0,0,16292

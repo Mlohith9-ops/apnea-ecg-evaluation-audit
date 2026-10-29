@@ -1,0 +1,5 @@
+pair,windows,median_corr,min_corr,offset_s_median,offset_s_spread
+c05-c06,5,1.0,1.0,80.0,0.0
+x33-x34,5,1.0,1.0,70.0,0.0
+x22-x35,5,1.0,1.0,40.0,0.0
+a04-a12,5,0.03,0.027,2039.41,415.66

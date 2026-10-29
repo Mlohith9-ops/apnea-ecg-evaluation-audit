@@ -1,0 +1,3 @@
+variant,excluded_groups,excluded_records,rows,records,subject_groups,apnea_minutes,auc,ci_low,ci_high
+original pooled LOSO,,,16558,34,23,6508,0.6890945243053326,0.5492871736309629,0.8268860236300631
+"without P01, P09, P02","P01,P09,P02","a01,a14,a09,a18,a02",14048,29,20,4416,0.8153961150783621,0.7432513118998499,0.8710812756717097
