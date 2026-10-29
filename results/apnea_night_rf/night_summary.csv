@@ -1,2 +1,0 @@
-model,night_auc_A_vs_C,night_acc_A_vs_C,spearman_all,mae_min_per_h
-random_forest,"0.655 [0.375, 0.889]","0.633 [0.417, 0.833]","0.158 [-0.345, 0.647]","18.923 [14.050, 23.983]"

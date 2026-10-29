@@ -13,6 +13,16 @@ __pycache__/
 .vscode/
 CLAUDE.md
 
+# Superseded or exploratory runs, not reported (local files kept; see README)
+results/apnea_baseline/
+results/apnea_baseline_norm/
+results/apnea_official_split/
+results/apnea_official_final/
+results/apnea_night/
+results/apnea_night_gb/
+results/apnea_night_record/
+results/apnea_night_rf/
+
 # Results files over 5 MB. Git cannot filter by size, so list them here by path.
 # At packaging time (2026-10-29) no results file exceeded 5 MB (largest: 3.2 MB).
 # Check before committing new runs:

@@ -26,8 +26,10 @@ undocumented pairs in the test set, and the copies' apnea labels do not fully ag
    scores is not supported. The unseen part is small, so the intervals are wide.
 4. **The gap between learning-set LOSO (0.689) and official x (0.913) is not explained.**
    Median within-record AUC is closer (0.853 vs 0.891). Pooled LOSO AUC rises to 0.815 when
-   three suspected-subject groups are removed. **This 0.815 is a post-hoc sensitivity check,
-   not a performance figure.** Replacing probabilities with within-record ranks gives 0.670.
+   three suspected-subject groups are removed. P01, P09 and P02 were chosen after inspecting
+   per-subject results from an earlier pre-deduplication run
+   (results/apnea_analysis/per_subject_accuracy.csv); this is a post-hoc sensitivity check, not
+   a performance figure. Replacing probabilities with within-record ranks gives 0.670.
 5. **Data integrity.** c05/c06 (documented by PhysioNet), x33/x34 and x22/x35 are copies of the
    same recording at a fixed time offset. The copies' apnea labels disagree on 7 of 13
    apnea-minute labels, and the PhysioNet table gives x22 and x35 different sexes. One copy of
@@ -118,9 +120,11 @@ AUC, summarised over records with both classes. Records are never pooled.
 
 **2. Hard-subject sensitivity** (`analysis2_hard_subject_sensitivity.csv`). This is the pooled
 learning LOSO AUC with suspected groups P01 (a01, a14), P09 (a09, a18) and P02 (a02) removed.
-**It is a post-hoc sensitivity check, not a performance figure.** The three groups were named before
-this analysis was run but were not part of the pre-specified evaluation. The analysis does not
-claim that these subjects should be dropped.
+P01, P09 and P02 were chosen after inspecting per-subject results from an earlier
+pre-deduplication run (results/apnea_analysis/per_subject_accuracy.csv); this is a post-hoc
+sensitivity check, not a performance figure. Because the groups were picked for their poor
+results, removing them is expected to raise the AUC. The analysis does not claim that these
+subjects should be dropped.
 
 | variant | excluded_groups | excluded_records | rows | records | subject_groups | apnea_minutes | auc | ci_low | ci_high |
 |---|---|---|---|---|---|---|---|---|---|
@@ -222,13 +226,28 @@ README.md, LICENSE, requirements.txt, reproduce.ps1, download_apnea.ps1
 data/README.md                        how to obtain the dataset (the data itself is not included)
 splits/apnea_ecg_subject_map.csv      record -> suspected same-subject group, with evidence column
 src/                                  all scripts; each has a usage docstring
-results/                              one folder per run; reported runs:
+results/
   apnea_label_check.csv               per-record label/annotation check
-  apnea_baseline_final/summary.csv    learning-set CV (table above)
+  apnea_baseline_final/               learning-set CV (table above) and out-of-fold predictions
   apnea_official_final_v2/            official split (table above) and x predictions
   apnea_gap_analysis/                 LOSO vs x gap analysis (tables above, report.md)
-  apnea_diagnostics/                  RR-series pair screen; duplicates/ raw-ECG checks and overlays
+  apnea_diagnostics/                  pair_correlations.csv: RR-series screen of all record pairs
+    duplicates/                       raw-ECG copy checks, label disagreements, overlay PNGs
+    x_per_record.csv                  HISTORICAL, pre-deduplication (see below)
+  apnea_analysis/                     HISTORICAL, pre-deduplication (see below)
+  audit_c03/                          signal-quality audit of record c03
 ```
+
+**Historical files kept for transparency.** Two tracked items come from runs made before
+deduplication and the subject-map fix. Their original inputs are not included in the
+repository. **Neither is part of the final deduplicated evaluation, and neither should be
+mistaken for it.**
+
+- `results/apnea_analysis/` holds per-subject results, paired AUC differences and per-record
+  summaries from the pre-deduplication baseline. Its `per_subject_accuracy.csv` is where the
+  post-hoc hard-subject groups P01, P09 and P02 were picked.
+- `results/apnea_diagnostics/x_per_record.csv` holds per-record x results from the
+  pre-deduplication official-split run. It still lists x34 and x35, under old group labels.
 
 Final pipeline scripts, in order:
 
@@ -248,9 +267,10 @@ Earlier and exploratory scripts are kept for transparency but are not part of th
 results: `baseline_apnea_old.py` and `build_apnea_features_old.py` (superseded versions),
 `analyze_apnea_results.py` (paired bootstrap and per-subject breakdown on the pre-deduplication
 baseline), `night_level_apnea.py` (exploratory whole-night evaluation) and `audit_record.py`
-(signal-quality audit of one record, used for c03). Results folders other than the reported runs
-listed above come from those scripts or are earlier runs. `results/apnea_official_final` is a
-stale pre-deduplication run (see `SUPERSEDED.txt` there) and must not be reported.
+(signal-quality audit of one record, used for c03). Earlier, superseded and exploratory runs
+from these scripts are not included in the repository. These are the pre-deduplication
+baseline, the record-normalised baseline, the pre-deduplication official-split runs and the
+night-level runs.
 
 ## Limitations
 
@@ -267,7 +287,7 @@ stale pre-deduplication run (see `SUPERSEDED.txt` there) and must not be reporte
   machine-generated and were not reviewed here.
 - **Unexplained gap.** Learning-set LOSO AUC (0.689) is far below the official x AUC (0.913),
   and the gap analysis does not explain it. The 0.815 hard-subject figure is a post-hoc
-  sensitivity check only.
+  sensitivity check only: those groups were chosen after inspecting earlier per-subject results.
 - **Night-level metrics.** The x night classes are approximated from minute labels, and
   night_auc compares only extreme nights.
 - **One dataset.** All results come from Apnea-ECG, with no external validation set.

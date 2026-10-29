@@ -1,2 +1,0 @@
-model,night_auc_A_vs_C,night_acc_A_vs_C,spearman_all,mae_min_per_h
-hist_gb,"0.685 [0.431, 0.908]","0.667 [0.464, 0.862]","0.214 [-0.272, 0.681]","18.437 [13.659, 23.343]"

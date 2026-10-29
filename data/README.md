@@ -23,20 +23,21 @@ are not tracked in git.
 
 ## Licence
 
-The downloaded files do not include a licence file. Check the PhysioNet page for the current
-licence and terms of use before redistributing anything derived from the data:
+The Apnea-ECG Database is distributed under the **Open Data Commons Attribution License v1.0**
+(ODC-By 1.0). See the dataset page for the licence terms:
 https://physionet.org/content/apnea-ecg/1.0.0/
 
 ## Citation
 
-Check the PhysioNet page above for the required citation; the downloaded files do not state
-one. The database is usually cited with its original paper and the PhysioNet resource paper:
+If you use the dataset, cite:
 
-- Penzel T, Moody GB, Mark RG, Goldberger AL, Peter JH. The Apnea-ECG Database. Computers in
-  Cardiology 2000;27:255-258.
-- Goldberger AL, Amaral LAN, Glass L, Hausdorff JM, Ivanov PCh, Mark RG, Mietus JE, Moody GB,
-  Peng C-K, Stanley HE. PhysioBank, PhysioToolkit, and PhysioNet: Components of a new research
-  resource for complex physiologic signals. Circulation 2000;101(23):e215-e220.
+- T. Penzel, G. B. Moody, R. G. Mark, A. L. Goldberger, J. H. Peter. "The Apnea-ECG Database."
+  *Computers in Cardiology*, 2000, 27:255-258.
+- T. Pollard, B. E. Moody, L. Lehman, G. Gow, C. Fernandes, C. Xie, A. Johnson, R. G. Mark,
+  T. Heldt. "PhysioNet as a global platform for biomedical research." *Nature Health*, 2026.
+
+Also cite the dataset itself with its DOI. Copy the DOI from the dataset page,
+https://physionet.org/content/apnea-ecg/1.0.0/
 
 The additional per-record information (`additional-information.txt`) was provided to PhysioNet
 by Dr. Thomas Penzel, as stated in that file.
