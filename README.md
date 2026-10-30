@@ -24,12 +24,16 @@ undocumented pairs in the test set, and the copies' apnea labels do not fully ag
    difference is -0.003 [-0.054, +0.082] for hist_gb and -0.075 [-0.141, +0.017] for logreg
    (23 seen and 10 unseen test records). The hypothesis that overlap inflates official-split
    scores is not supported. The unseen part is small, so the intervals are wide.
-4. **The gap between learning-set LOSO (0.689) and official x (0.913) is not explained.**
-   Median within-record AUC is closer (0.853 vs 0.891). Pooled LOSO AUC rises to 0.815 when
-   three suspected-subject groups are removed. P01, P09 and P02 were chosen after inspecting
-   per-subject results from an earlier pre-deduplication run
-   (results/apnea_analysis/per_subject_accuracy.csv); this is a post-hoc sensitivity check, not
-   a performance figure. Replacing probabilities with within-record ranks gives 0.670.
+4. **The gap between learning-set LOSO (0.689) and official x (0.913) is described, not
+   causally explained.** The gap analysis reuses existing predictions and does not test causes.
+   Median within-record AUC is closer (0.853 vs 0.891), but the learning lower quartile is
+   lower (0.677 vs 0.843). Three learning records with mostly apnea minutes rank their minutes
+   inversely (within-record AUC a01 0.292, a14 0.419, a18 0.461; suspected subjects P01 and
+   P09). Pooled LOSO AUC rises to 0.815 when P01, P09 and P02 are removed, still below 0.913.
+   These three groups were chosen after inspecting per-subject results from an earlier
+   pre-deduplication run (results/apnea_analysis/per_subject_accuracy.csv); this is a post-hoc
+   sensitivity check, not a performance figure. Replacing probabilities with within-record
+   ranks gives 0.670; this does not show whether calibration caused the gap.
 5. **Data integrity.** c05/c06 (documented by PhysioNet), x33/x34 and x22/x35 are copies of the
    same recording at a fixed time offset. The copies' apnea labels disagree on 7 of 13
    apnea-minute labels, and the PhysioNet table gives x22 and x35 different sexes. One copy of
@@ -288,9 +292,12 @@ night-level runs.
   issue, but it cannot be checked for them.
 - **Machine-generated beats.** Features use the database's `.qrs` annotations, which are
   machine-generated and were not reviewed here.
-- **Unexplained gap.** Learning-set LOSO AUC (0.689) is far below the official x AUC (0.913),
-  and the gap analysis does not explain it. The 0.815 hard-subject figure is a post-hoc
-  sensitivity check only: those groups were chosen after inspecting earlier per-subject results.
+- **Gap without an identified cause.** Learning-set LOSO AUC (0.689) is far below the official
+  x AUC (0.913). The gap analysis describes it (closer within-record AUCs; a01, a14 and a18
+  ranked inversely) but does not identify a cause, and the two settings also differ in
+  training-set size, records, subjects and apnea prevalence. The 0.815 hard-subject figure is a
+  post-hoc sensitivity check only: those groups were chosen after inspecting earlier
+  per-subject results.
 - **Night-level metrics.** The x night classes are approximated from minute labels, and
   night_auc compares only extreme nights.
 - **One dataset.** All results come from Apnea-ECG, with no external validation set.
